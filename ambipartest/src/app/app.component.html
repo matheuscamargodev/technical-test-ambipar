@@ -1,0 +1,92 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="40"
+    alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+  />
+  <span>Ambipar teste técnico</span>
+  <div class="spacer"></div>
+</div>
+
+<div class="content" role="main">
+  <!-- Resources -->
+  <h2>Extrator de log Tíbia</h2>
+  <p>Selecione o arquivo de log no formato .txt ou cole no textbox abaixo.</p>
+  <mat-grid-list cols="2" rowHeight="2:1" style="text-align: center">
+    <mat-grid-tile>
+      <div>
+        <div>
+          <h2>Opção 1</h2>
+        </div>
+        <br />
+        <div>
+          <span class="file-name">{{ selectedFile?.name }}</span>
+        </div>
+        <div>
+          <button type="button" mat-raised-button (click)="fileInput.click()">
+            Escolher arquivo .txt
+          </button>
+          <input
+            hidden
+            (change)="onFileSelected($event)"
+            #fileInput
+            type="file"
+            accept="text/plain"
+          />
+        </div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile style="height: 500px;">
+      <div>
+        <div>
+          <h2>Resultado:</h2>
+        </div>
+        <div>
+          <button (click)="limpar()" *ngIf="outputLog"> Limpar </button>
+        </div>
+        <br />
+
+        <div>
+          <pre style="width: 500px; height: 600px; text-align: left;">
+
+            <ngx-json-viewer  [expanded]="false" [json]="outputLog"></ngx-json-viewer>
+          </pre>
+          </div>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div>
+        <div>
+          <h2>Opção 2</h2>
+        </div>
+        <div>
+          <mat-form-field style="width: 300px" appearance="fill">
+            <mat-label>Cole aqui o log do servidor...</mat-label>
+            <textarea
+              name="textarea"
+              matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="6"
+              cdkAutosizeMaxRows="20"
+              (change)="alteraCampo($event)"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="card-container"></div>
+</div>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<router-outlet></router-outlet>
